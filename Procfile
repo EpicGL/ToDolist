@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn fullsit.wsgi
+web: gunicorn to_do_list.wsgi
