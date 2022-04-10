@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block title %}
+  Edit
+{% endblock title %}
+
+{% block body %}
+<div class="row d-flex  justify-content-center">
+    <div class="card col-4">
+        <div class="card card-body">
+            <form class="form" action="" method="post">
+                {% csrf_token %}
+                <div>
+                    <div>
+                        <div>
+                            {{form.title.label}}
+                        </div>
+                        {{form.title}}
+                    </div>
+                    <div>
+                        <div class=" ">
+                            {{form.description.label}}
+                        </div>
+                        {{form.description}}
+                    </div>
+                    <div>
+                        {{form.complete.label}}
+                        {{form.complete}}
+                    </div>
+                </div>
+        
+                <div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    
+                    {% if item %}   
+                    <a class="btn btn-danger" href="{% url 'delete' item.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

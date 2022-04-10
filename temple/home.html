@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+
+{% block title %}
+  Home
+{% endblock title %}
+
+{% block body %}
+  <style>
+    .crossoff{
+      text-decoration: line-through;
+      font-style: italic;
+      color: grey;
+    }
+    a{
+      text-decoration: none;
+      color:black;
+    }
+    a .crossoff{
+      color: grey;
+    }
+  </style>
+
+<div>
+  
+  {% if messages %}
+      
+      {% for message in messages %}
+      <div class="alert alert-success d-flex align-items-center justify-content-between" role="alert">
+        <div><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+        {{message}}
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+        
+      {% endfor %}
+        
+  {% endif %}
+    
+</div>
+<div class="row d-flex justify-content-center">
+  <div class="card card-full col-9">
+    <div class="card-full">
+      <div class=>
+        <div class="">
+          <h3>
+            To Do List
+          </h3> 
+        </div>
+        <div class="">
+          <a class="btn btn-primary" href="{% url 'additem'%}">Add To List</a>
+        </div>
+        <br>
+      </div>
+    </div>
+    <div class="card card-body body-color">
+      <table class="table">  
+        {% if items %}
+          
+          {% for item in items %}
+
+            
+            {% if item.complete %}
+              <tr class="crossoff">
+                <td class="text-color removelink" scope="col"><a class="a crossoff" href="{% url 'edit' item.id %}">{{item.title}}</a></td>
+                <td class="text-color hide-on-phone" scope="col">{{item.description}}</td>
+                <td class="text-color hide-on-phone" scope="col">{{item.created}}</td>
+                <td class="text-color" scope="col"><a class="a crossoff" href="{% url 'crossoff' item.id %}">Uncrossoff</a> </td>
+              </tr>
+            {% else %}
+              <tr>
+                <td class="text-color text-black" scope="col"><a class="" href="{% url 'edit' item.id %}">{{item.title}}</a></td>
+                <td class="text-color hide-on-phone text-black" scope="col">{{item.description}}</td>
+                <td class="text-color hide-on-phone text-black" scope="col">{{item.created}}</td>
+                <td class="text-color text-black" scope="col"><a class="" href="{% url 'uncrossoff' item.id %}">Crossoff</a> </td>
+              </tr>
+            {% endif %}
+              
+
+
+
+          {% endfor %}
+            
+        {% endif %}
+      </table>
+        
+    </div>
+    <br>
+  </div>
+</div>
+
+{% endblock body %}
