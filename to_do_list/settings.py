@@ -11,10 +11,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p(+hev4s#0m42!q967pyk_=l!&h-z$f10j&^t5d#%=c=&qn-mf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['epic-todolist.herokuapp.com','127.0.0.1']
 
+STATIC_ROOT = 'staticfiles/'
+
+STATIC_URL = 'static/'
+
+MEDIA_URL = '/img/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Application definition
 
